@@ -1,0 +1,110 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+/* navbar */
+
+.navbar{
+position:fixed;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 60px;
+transition:0.3s;
+background:transparent;
+z-index:1000;
+}
+
+/* navbar when scrolled */
+
+.navbar.scrolled{
+background:#000;
+box-shadow:0 4px 15px rgba(0,0,0,0.5);
+}
+
+/* logo */
+
+.logo{
+color:rgb(0, 0, 0);
+font-size:24px;
+font-weight:bold;
+}
+
+/* nav links */
+
+.nav-links{
+display:flex;
+list-style:none;
+gap:35px;
+}
+
+.nav-links li a{
+text-decoration:none;
+color:rgb(28, 26, 26);
+font-size:18px;
+position:relative;
+transition:0.3s;
+}
+
+/* hover animation */
+
+.nav-links li a:hover{
+color:#00f5a0;
+}
+
+.nav-links li a::after{
+content:"";
+position:absolute;
+bottom:-5px;
+left:0;
+width:0;
+height:2px;
+background:#00f5a0;
+transition:0.3s;
+}
+
+.nav-links li a:hover::after{
+width:100%;
+}
+
+/* mobile menu */
+
+.menu-icon{
+display:none;
+font-size:28px;
+cursor:pointer;
+color:rgb(0, 0, 0);
+}
+
+/* responsive */
+
+@media(max-width:768px){
+
+.menu-icon{
+display:block;
+}
+
+.nav-links{
+position:absolute;
+top:70px;
+right:0;
+background:#000;
+flex-direction:column;
+width:200px;
+padding:20px;
+display:none;
+}
+
+.nav-links.active{
+display:flex;
+}
+.nav-links li a:hover{
+color:#e11f8d;
+text-shadow:0 0 8px #00f5a0;
+}
+}
