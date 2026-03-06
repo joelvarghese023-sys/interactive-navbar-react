@@ -1,37 +1,61 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 
-function Navbar() {
+const navItems = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "services", label: "Services" },
+  { id: "contact", label: "Contact" },
+];
 
-  const [scroll, setScroll] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScroll(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 32);
+    const handleResize = () => {
+      if (window.innerWidth > 860) {
+        setIsMenuOpen(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
   return (
-    <nav className={scroll ? "navbar scrolled" : "navbar"}>
+    <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
+      <a className="logo" href="#home" aria-label="Go to home">
+        Task 1
+      </a>
 
-      <h2 className="logo">Task 1</h2>
+      <button
+        type="button"
+        className={`menu-icon ${isMenuOpen ? "open" : ""}`}
+        aria-label="Toggle navigation menu"
+        aria-expanded={isMenuOpen}
+        onClick={() => setIsMenuOpen((prev) => !prev)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
 
-      <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
-        ☰
-      </div>
-
-      <ul className={menuOpen ? "nav-links active" : "nav-links"}>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <ul className={`nav-links ${isMenuOpen ? "active" : ""}`}>
+        {navItems.map((item) => (
+          <li key={item.id}>
+            <a href={`#${item.id}`} onClick={() => setIsMenuOpen(false)}>
+              {item.label}
+            </a>
+          </li>
+        ))}
       </ul>
-
     </nav>
   );
 }

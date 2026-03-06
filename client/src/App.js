@@ -4,30 +4,50 @@ import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className="app-shell">
       <Navbar />
 
       <section id="home" className="section hero">
-        <h1>Home</h1>
-        <p>Welcome to the Interactive Navbar Demo</p>
+        <div className="section-content">
+          <p className="eyebrow"> Navigation</p>
+          <h1> Interactive Navbar</h1>
+          <p>
+            directs you on a click
+          </p>
+        </div>
       </section>
 
       <section id="about" className="section about">
-        <h1>About</h1>
-        <p>This navbar changes style on scroll and supports smooth navigation.</p>
+        <div className="section-content">
+          
+          <h2>ABOUT</h2>
+          <p>
+            The Information  related to  the company are preseted here!
+          </p>
+        </div>
       </section>
 
       <section id="services" className="section services">
-        <h1>Services</h1>
-        <p>Hover effects and responsive design included.</p>
+        <div className="section-content">
+          
+          <h2>SERVICES</h2>
+          <p>
+            The services provided by the company are listed here!!
+          </p>
+        </div>
       </section>
 
       <section id="contact" className="section contact">
-        <h1>Contact</h1>
-        <p>Here ends the task 1.</p>
+        <div className="section-content">
+         
+          <h2>CONTACTS</h2>
+          <p>
+            The detais like phone number or emailid are provided here for communication purpose!!
+          </p>
+        </div>
       </section>
     </div>
- );
+  );
 }
 
 export default App;
